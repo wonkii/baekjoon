@@ -14,31 +14,6 @@ int main(void) {
 }
 // Ctrl+Z를 입력하면 프로그램이 종료된다.
 
-#include <iostream>
-
-int main() {
-	int score;
-	std::cin >> score;
-
-	if (90 <= score && score <= 100) {
-		std::cout << 'A';
-	}
-	else if (80 <= score && score < 90) {
-		std::cout << 'B';
-	}
-	else if (700 <= score && score < 80) {
-		std::cout << 'C';
-	}
-	else if (60 <= score && score < 70) {
-		std::cout << 'D';
-	}
-	else {
-		std::cout << 'F';
-	}
-	return 0;
-}
-// C++에서 논리연산자가 중요한 이유이다. 90<= X <=100으로 쓰면 우측 방정식이 항상 성립해서 A만 출력되게 된다.
-
 // baekjoon 1145번 
 // 주어진 정수 5개 중 3개를 선택해서 최소공배수를 만들 때, 가장 작은 최소공배수를 구하시오
 #include <iostream>
@@ -188,28 +163,6 @@ int main() {
 75*x > 23400 클 때 -> 100으로 나눠 -> 출력해
 428300
 */
-#include <iostream>
-#include <set>
-#include <algorithm>
-
-int main() {
-	int array[10];
-	int A, count = 1;
-	for (int i = 0; i < 10; i++) {
-		std::cin >> A;
-		array[i] = A % 42;
-	}
-	std::set<int> s;
-
-	for (int j = 0; j < std::size(array); j++) {
-		s.insert(array[j]);
-	}
-
-	std::for_each(s.begin(), s.end(), [](int n) {
-		std::cout << n << std::endl;        //output : -1, 1, 3, 200
-		});
-	return 0;
-}
 
 /*
 3052
@@ -758,3 +711,24 @@ int main() {
 	return 0;
 }
 */
+#include <iostream>
+#include <string>
+
+int main() {
+	double A, B;
+	std::cin >> A >> B;
+	std::cout.precision(12);
+	std::cout << std::fixed;
+	std::cout << A / B;
+	return 0;
+}
+/*
+std::cout << std::fixed 와 std::cout.precision() 알아두기
+1008번 문제를 보면, 실제 정답과 출력값의 절대오차 또는 상대오차가 10의 -9승이하면 정답이다.
+오차범위가 작은 것은 최대한 많은 비트를 쓰는 자료형을 쓰라는 것이기에, double(10의-15승정도)를 활용한다.
+float(10의-7승전후라고 한다).
+여기서는 10의-9승보다 작은 오차범위가 필요하기에, double형을 쓴다.
+
+ std::cout.precision(n)는 실수 전체 자리수를 n자리로 표현한 것이다.
+ std::cout << std::fixed는 정수 부분을 신경쓰지 않고 소수점 아래로만 고정하고 싶은 경우에 쓰는 객체이다.
+ */
