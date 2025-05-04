@@ -25,3 +25,34 @@ int main() {
 	std::cout << "NO";
 	return 0; // 같은 경우 없이 반복문 종료 시 No출력 후 프로그램 종료
 }
+/*최적화 관점
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string number;
+    std::cin >> number;
+
+    int len = number.size(); // 매번 number의 사이즈를 계산하는 거보단, 하나의 변수에 넣어두는 것이 효율적
+
+    // i는 분할 위치 (왼쪽 [0~i-1], 오른쪽 [i~len-1])
+    for (int i = 1; i < len; ++i) {
+        int left = 1, right = 1;
+
+        // 왼쪽 곱
+        for (int j = 0; j < i; ++j)
+            left *= number[j] - '0';
+
+        // 오른쪽 곱
+        for (int j = i; j < len; ++j)
+            right *= number[j] - '0';
+
+        if (left == right) {
+            std::cout << "YES\n";
+            return 0;
+        }
+    }
+
+    std::cout << "NO\n";
+    return 0;
+}*/
